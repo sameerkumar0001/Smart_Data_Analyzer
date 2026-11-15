@@ -1,0 +1,15 @@
+the below mentioned libraries needs to be downloaded very first!
+
+streamlit
+
+pandas
+
+numpy
+
+matplotlib
+
+seaborn
+
+openpyxl
+
+code- !pip install -q streamlit pandas numpy matplotlib seaborn openpyxl

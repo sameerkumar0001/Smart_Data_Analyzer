@@ -1,0 +1,47 @@
+CELL 3: Install and configure Cloudflared in the Google Colab environment
+
+# Install cloudflared if not already installed
+
+!pip install -q pyngrok > /dev/null 2>&1
+
+!curl -s https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.sql > /dev/null 2>&1
+
+!wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
+
+!chmod +x cloudflared
+
+code- # Install cloudflared if not already installed
+!pip install -q pyngrok > /dev/null 2>&1
+!curl -s https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.sql > /dev/null 2>&1
+!wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
+!chmod +x cloudflared
+
+
+# CELL 4: Start Streamlit and Launch the Cloudflare Tunnel
+
+# Start Streamlit bound to 127.0.0.1 explicitly
+
+!streamlit run app.py --server.address=127.0.0.1 --server.port=8501 &>/content/logs.txt &
+
+
+
+import time
+
+time.sleep(3) # Give Streamlit 3 seconds to boot up
+
+
+
+# Launch cloudflared tunnel
+
+!./cloudflared tunnel --url http://127.0.0.1:8501
+
+
+
+code- # Start Streamlit bound to 127.0.0.1 explicitly
+!streamlit run app.py --server.address=127.0.0.1 --server.port=8501 &>/content/logs.txt &
+
+import time
+time.sleep(3) # Give Streamlit 3 seconds to boot up
+
+# Launch cloudflared tunnel
+!./cloudflared tunnel --url http://127.0.0.1:8501
